@@ -58,7 +58,7 @@ public class TransactionSteps {
     public void i_should_be_redirected_to_the_transactions_page() {
         logger.info("Verifying transactions page redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
         String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/transaksi", currentUrl,
+        Assertions.assertEquals("https://frontend-alganis-production.up.railway.app//transaksi", currentUrl,
                 "Not redirected to transactions page. Actual URL: " + currentUrl);
         Assertions.assertTrue(transactionPage.isTransactionTableDisplayed(), "Transaction table not displayed");
     }

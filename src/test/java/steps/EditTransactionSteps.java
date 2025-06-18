@@ -20,15 +20,4 @@ public class EditTransactionSteps {
     public void iEnterSold(String sold) {
         editTransactionPage.enterSold(sold);
     }
-
-    @And("I click the Save button")
-    public void iClickSaveButton() {
-        editTransactionPage.clickSaveButton();
-    }
-
-    @Then("I should be redirected to the transactions page")
-    public void iShouldBeRedirectedToTransactionsPage() {
-        String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("/transactions"));
-    }
 }

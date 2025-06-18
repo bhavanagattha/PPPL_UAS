@@ -2,8 +2,10 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.junit.jupiter.api.Assertions;
 import pages.CreateTransactionPage;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import steps.CucumberHooks;
 
 import static org.junit.Assert.assertTrue;
@@ -38,15 +40,12 @@ public class CreateTransactionSteps {
         createTransactionPage.enterStock(stock);
     }
 
-    @And("I click the Save button")
-    public void iClickSaveButton() {
-        createTransactionPage.clickSaveButton();
-    }
+    @Then("I should see validation message {string}")
+    public void iShouldSeeValidationMessage(String expectedMessage) {
+    LoginPage loginPage = new LoginPage(CucumberHooks.getDriver());
 
-    @Then("I should be redirected to the transactions page")
-    public void iShouldBeRedirectedToTransactionsPage() {
-        // kamu bisa menyesuaikan dengan URL atau elemen unik di halaman transaksi
-        String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("/transactions")); // contoh validasi redirect
+    String actualMessage = loginPage.getErrorMessage();
+    Assertions.assertTrue(actualMessage.contains(expectedMessage),
+            "Expected error message to contain: '" + expectedMessage + "' but got: '" + actualMessage + "'");
     }
 }

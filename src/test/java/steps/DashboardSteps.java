@@ -49,8 +49,8 @@ public class DashboardSteps {
     public void i_should_be_redirected_to_the_dashboard_page() {
         logger.info("Verifying dashboard redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
         String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
-        if (!currentUrl.equals("https://padwebkeuangan-production.up.railway.app/dashboard")) {
-            logger.error("Unexpected URL: {}. Page source: {}", currentUrl, dashboardPage.getPageSource());
+        if (!currentUrl.equals("https://frontend-alganis-production.up.railway.app//dashboard")) {
+//            logger.error("Unexpected URL: {}. Page source: {}", currentUrl, dashboardPage.getPageSource());
             Assertions.fail("Not redirected to dashboard page. Actual URL: " + currentUrl);
         }
         Assertions.assertTrue(dashboardPage.isIncomeTableDisplayed(), "Dashboard indicator not displayed");
@@ -60,7 +60,8 @@ public class DashboardSteps {
     public void i_should_be_redirected_to_the_login_page() {
         logger.info("Verifying login page redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
         String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/", currentUrl,
+        Assertions.assertEquals("https://https://frontend-alganis-production.up.railway.app//", currentUrl,
                 "Not redirected to login page. Actual URL: " + currentUrl);
     }
+
 }
