@@ -21,7 +21,7 @@ Feature: End-to-End User Flow for Transaction Management
     And I enter price "500000"
     And I enter stock "100"
     And I click the Save create button
-    And I should see validation message "Consignment created successfully!"
+    And I should see create validation message "Consignment created successfully!"
     Then I should be redirected to the transactions page
 #    null value
 
@@ -30,6 +30,7 @@ Feature: End-to-End User Flow for Transaction Management
     And I enter entry date "02-01-2025"
     And I enter sold "100"
     And I click the Save edit button
+    And I should see edit validation message "Data berhasil diupdate!"
     Then I should be redirected to the transactions page
 #    sold  101 (boundary, negative)
 

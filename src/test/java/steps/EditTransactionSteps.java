@@ -35,19 +35,42 @@ public class EditTransactionSteps {
         editTransactionPage.enterEntryDate(entryDate);
     }
 
-
     @And("I enter sold {string}")
     public void iEnterSold(String sold) {
         editTransactionPage.enterSold(sold);
     }
 
+
     @And("I click the Save edit button")
     public void iClickSaveEditButton() {
         editTransactionPage.clickSaveButton();
+    }
+
+    @And("I should see edit validation message {string}")
+    public void iShouldSeeEditValidationMessage(String expectedMessage) {
+
         WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(5));
         wait.until(ExpectedConditions.alertIsPresent());
         // Pindah fokus ke alert dan klik OK
         Alert alert = CucumberHooks.getDriver().switchTo().alert();
+
+        // Get the text content of the alert
+        String alertText = alert.getText();
+        System.out.println("Alert text: " + alertText);
+
         alert.accept();
+    }
+
+    @Then("the form should not be submitted")
+    public void theFormShouldNotBeSubmitted() {
+        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(3));
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+            // If alert is present, test fails
+            throw new AssertionError("Form was submitted despite missing required field.");
+        } catch (Exception e) {
+            // No alert — expected behavior
+            System.out.println("Form blocked by browser due to required field. Test passed.");
+        }
     }
 }

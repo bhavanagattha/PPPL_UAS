@@ -52,8 +52,8 @@ public class CreateTransactionSteps {
         createTransactionPage.clickSaveButton();
     }
 
-    @Then("I should see validation message {string}")
-    public void iShouldSeeValidationMessage(String expectedMessage) {
+    @Then("I should see create validation message {string}")
+    public void iShouldSeeCreateValidationMessage(String expectedMessage) {
 
         WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(5));
         wait.until(ExpectedConditions.alertIsPresent());
