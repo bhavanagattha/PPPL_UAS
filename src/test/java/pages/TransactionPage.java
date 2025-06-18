@@ -35,8 +35,8 @@ public class TransactionPage {
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement saveButton;
 
-    @FindBy(xpath = "//a[.//span[text()='Edit']]")
-    private List<WebElement> editButtons;
+    @FindBy(xpath = "//*[@id=\"consignment-body\"]/tr[1]/td[11]/a[1]")
+    private WebElement editButton;
 
     @FindBy(xpath = "//button[.//span[text()='Hapus']]")
     private List<WebElement> deleteButtons;
