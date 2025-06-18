@@ -15,8 +15,10 @@ Feature: End-to-End User Flow for Transaction Management
     When I click the Transactions button
     Then I should be redirected to the transactions page
     When I click the Add Transaction button
+
+#    create transaction
     And I enter store "Toko AJI"
-    And I emter product "produk A"
+    And I enter product "produk A"
     And I enter exit date "2025-01-01"
     And I enter price "500000"
     And I enter stock "100"
