@@ -19,10 +19,10 @@ Feature: End-to-End User Flow for Transaction Management
 #    create transaction
     And I enter store "Toko AJI"
     And I enter product "produk A"
-    And I enter exit date "2025-01-01"
+    And I enter exit date "01-01-2025"
     And I enter price "500000"
     And I enter stock "100"
-    And I click the Save button
+    And I click the Save create button
     Then I should be redirected to the transactions page
 #    null value
 
@@ -30,7 +30,7 @@ Feature: End-to-End User Flow for Transaction Management
     When I click the Edit button for the first transaction
     And I enter entry date "2025-01-02"
     And I enter sold "100"
-    And I click the Save button
+    And I click the Save edit button
     Then I should be redirected to the transactions page
 #    sold  101 (boundary, negative)
 

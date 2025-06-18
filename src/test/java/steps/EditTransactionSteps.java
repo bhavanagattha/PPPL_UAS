@@ -21,14 +21,8 @@ public class EditTransactionSteps {
         editTransactionPage.enterSold(sold);
     }
 
-    @And("I click the Save button")
-    public void iClickSaveButton() {
+    @And("I click the Save edit button")
+    public void iClickSaveEditButton() {
         editTransactionPage.clickSaveButton();
-    }
-
-    @Then("I should be redirected to the transactions page")
-    public void iShouldBeRedirectedToTransactionsPage() {
-        String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("/transactions"));
     }
 }

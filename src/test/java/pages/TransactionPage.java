@@ -17,10 +17,10 @@ public class TransactionPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(id = "income-body")
+    @FindBy(id = "consignment-body")
     private WebElement transactionTable;
 
-    @FindBy(xpath = "//a[@href='/transaksi/tambah']")
+    @FindBy(xpath = "//a[@href='https://frontend-alganis-production.up.railway.app/transaksi/tambah']")
     private WebElement addButton;
 
     @FindBy(id = "date")

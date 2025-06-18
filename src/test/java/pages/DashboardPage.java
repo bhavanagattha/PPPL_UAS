@@ -21,7 +21,7 @@ public class DashboardPage {
     private WebDriverWait wait;
 
     // Updated locator (adjust based on actual HTML)
-    @FindBy(css = "table.data-table") // Example: Use CSS selector for dashboard table
+    @FindBy(id = "consignmentsTable") // Example: Use CSS selector for dashboard table
     private WebElement incomeTable;
 
     @FindBy(xpath = "//a[@href='/transaksi']")

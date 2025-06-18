@@ -2,9 +2,16 @@ package steps;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CreateTransactionPage;
 import org.openqa.selenium.WebDriver;
 import steps.CucumberHooks;
+
+import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
@@ -38,15 +45,20 @@ public class CreateTransactionSteps {
         createTransactionPage.enterStock(stock);
     }
 
-    @And("I click the Save button")
-    public void iClickSaveButton() {
+    @And("I click the Save create button")
+    public void iClickSaveCreateButton() {
         createTransactionPage.clickSaveButton();
+        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(5));
+        try {
+            wait.until(ExpectedConditions.alertIsPresent());
+
+            // Pindah fokus ke alert dan klik OK
+            Alert alert = CucumberHooks.getDriver().switchTo().alert();
+
+            alert.accept(); // atau alert.dismiss() jika perlu cancel
+        } catch (TimeoutException e) {
+            Assertions.fail("Expected alert after saving, but none appeared.");
+        }
     }
 
-    @Then("I should be redirected to the transactions page")
-    public void iShouldBeRedirectedToTransactionsPage() {
-        // kamu bisa menyesuaikan dengan URL atau elemen unik di halaman transaksi
-        String currentUrl = driver.getCurrentUrl();
-        assertTrue(currentUrl.contains("/transactions")); // contoh validasi redirect
-    }
 }

@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class CreateTransactionPage {
     WebDriver driver;
@@ -28,8 +29,12 @@ public class CreateTransactionPage {
     }
 
     public void enterExitDate(String date) {
-        driver.findElement(exitDateField).sendKeys(date);
+        WebElement dateInput = driver.findElement(exitDateField);
+        dateInput.click();
+        dateInput.clear(); // optional, tergantung browser
+        dateInput.sendKeys(date); // Format harus yyyy-MM-dd
     }
+
 
     public void enterPrice(String price) {
         driver.findElement(priceField).clear();
