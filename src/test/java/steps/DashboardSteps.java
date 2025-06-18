@@ -2,70 +2,65 @@ package steps;
 
 import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.DashboardPage;
-import pages.EmployeeManagementPage;
-import pages.ExpenseListPage;
-import pages.TransactionPage;
+import pages.LoginPage;
 
 /**
- * Step definitions untuk navigasi dashboard.
+ * Step definitions for dashboard navigation and logout actions.
  */
 public class DashboardSteps {
+    private static final Logger logger = LoggerFactory.getLogger(DashboardSteps.class);
     private DashboardPage dashboardPage;
-    private TransactionPage transactionPage;
-    private ExpenseListPage expenseListPage;
-    private EmployeeManagementPage employeeManagementPage;
+    private LoginPage loginPage;
 
     public DashboardSteps() {
+        logger.info("Initializing DashboardSteps");
         dashboardPage = new DashboardPage(CucumberHooks.getDriver());
-        transactionPage = new TransactionPage(CucumberHooks.getDriver());
-        expenseListPage = new ExpenseListPage(CucumberHooks.getDriver());
-        employeeManagementPage = new EmployeeManagementPage(CucumberHooks.getDriver());
+        loginPage = new LoginPage(CucumberHooks.getDriver());
     }
 
-    @Given("I am logged in and on the dashboard page")
-    public void i_am_logged_in_and_on_the_dashboard_page() {
-        CucumberHooks.getDriver().get("https://padwebkeuangan-production.up.railway.app/dashboard");
-        Assertions.assertTrue(dashboardPage.isIncomeTableDisplayed());
-    }
-
-    @Given("I am logged in as an owner and on the dashboard page")
-    public void i_am_logged_in_as_an_owner_and_on_the_dashboard_page() {
-        i_am_logged_in_and_on_the_dashboard_page();
-        Assertions.assertTrue(dashboardPage.isEmployeeManagementButtonDisplayed(), "User is not an owner");
-    }
-
-    @When("I click the Transactions button on dahsboard")
-    public void i_click_the_transactions_button_on_dashboard() {
+    @When("I click the Transactions button")
+    public void i_click_the_transactions_button() {
+        logger.info("Clicking Transactions button");
         dashboardPage.clickTransactionButton();
     }
 
-    @When("I click the Expense List button on dashboard")
-    public void i_click_the_expense_list_button_on_dashboard() {
-        dashboardPage.clickExpenseListButton();
+    @When("I click the Dashboard button")
+    public void i_click_the_dashboard_button() {
+        logger.info("Clicking Dashboard button");
+        dashboardPage.clickDashboardButton();
     }
 
-    @When("I click the Employee Management button on dashboard")
-    public void i_click_the_employee_management_button_on_dashboard() {
-        dashboardPage.clickEmployeeManagementButton();
+    @When("I click the Logout button")
+    public void i_click_the_logout_button() {
+        logger.info("Clicking Logout button");
+        dashboardPage.clickLogoutButton();
     }
 
-    @Then("I should be redirected to the transactions page from dashboard")
-    public void i_should_be_redirected_to_the_transactions_page_from_dashboard() {
-        Assertions.assertTrue(transactionPage.isTransactionTableDisplayed());
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/transaksi", CucumberHooks.getDriver().getCurrentUrl());
+    @When("I click the Confirm Logout button")
+    public void i_click_the_confirm_logout_button() {
+        logger.info("Clicking Confirm Logout button");
+        dashboardPage.clickConfirmLogoutButton();
     }
 
-    @Then("I should be redirected to the expense list page from dashboard")
-    public void i_should_be_redirected_to_the_expense_list_page_from_dashboard() {
-        Assertions.assertTrue(expenseListPage.isExpenseTableDisplayed());
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/barang", CucumberHooks.getDriver().getCurrentUrl());
+    @Then("I should be redirected to the dashboard page")
+    public void i_should_be_redirected_to_the_dashboard_page() {
+        logger.info("Verifying dashboard redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
+        String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
+        if (!currentUrl.equals("https://padwebkeuangan-production.up.railway.app/dashboard")) {
+            logger.error("Unexpected URL: {}. Page source: {}", currentUrl, dashboardPage.getPageSource());
+            Assertions.fail("Not redirected to dashboard page. Actual URL: " + currentUrl);
+        }
+        Assertions.assertTrue(dashboardPage.isIncomeTableDisplayed(), "Dashboard indicator not displayed");
     }
 
-    @Then("I should be redirected to the employee management page from dashboard")
-    public void i_should_be_redirected_to_the_employee_management_page_from_dashboard() {
-        Assertions.assertTrue(employeeManagementPage.isUserTableDisplayed());
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/pegawai", CucumberHooks.getDriver().getCurrentUrl());
+    @Then("I should be redirected to the login page")
+    public void i_should_be_redirected_to_the_login_page() {
+        logger.info("Verifying login page redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
+        String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
+        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/", currentUrl,
+                "Not redirected to login page. Actual URL: " + currentUrl);
     }
-
 }

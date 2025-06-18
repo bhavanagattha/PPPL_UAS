@@ -1,45 +1,43 @@
 package steps;
 
 import io.cucumber.java.en.*;
-import org.junit.jupiter.api.Assertions;
-import pages.DashboardPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import pages.LoginPage;
 
 /**
- * Step definitions untuk fitur login.
+ * Step definitions for login-related actions.
  */
 public class LoginSteps {
+    private static final Logger logger = LoggerFactory.getLogger(LoginSteps.class);
     private LoginPage loginPage;
-    private DashboardPage dashboardPage;
 
     public LoginSteps() {
+        logger.info("Initializing LoginSteps");
         loginPage = new LoginPage(CucumberHooks.getDriver());
-        dashboardPage = new DashboardPage(CucumberHooks.getDriver());
     }
 
     @Given("I am on the login page")
     public void i_am_on_the_login_page() {
+        logger.info("Navigating to login page");
         loginPage.open();
     }
 
-    @When("I enter email on login {string}")
-    public void i_enter_email_on_login(String email) {
+    @When("I enter email {string}")
+    public void i_enter_email(String email) {
+        logger.info("Entering email: {}", email);
         loginPage.enterEmail(email);
     }
 
-    @When("I enter password on login {string}")
-    public void i_enter_password_on_login(String password) {
+    @When("I enter password {string}")
+    public void i_enter_password(String password) {
+        logger.info("Entering password");
         loginPage.enterPassword(password);
     }
 
     @When("I click the login button")
     public void i_click_the_login_button() {
+        logger.info("Clicking login button");
         loginPage.clickLoginButton();
-    }
-
-    @Then("I should be redirected to the dashboard page")
-    public void i_should_be_redirected_to_the_dashboard_page() {
-        Assertions.assertTrue(dashboardPage.isIncomeTableDisplayed());
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/dashboard", CucumberHooks.getDriver().getCurrentUrl());
     }
 }

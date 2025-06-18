@@ -56,7 +56,7 @@ public class TransactionPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void clickAddButton() {
+    public void clickAddTransactionButton() {
         wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
     }
 

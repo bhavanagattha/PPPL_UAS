@@ -32,7 +32,7 @@ public class LoginPage {
     }
 
     public void open() {
-        driver.get("https://padwebkeuangan-production.up.railway.app/");
+        driver.get("https://frontend-alganis-production.up.railway.app/");
     }
 
     public void enterEmail(String email) {
