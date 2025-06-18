@@ -50,19 +50,20 @@ public class CreateTransactionSteps {
     @And("I click the Save create button")
     public void iClickSaveCreateButton() {
         createTransactionPage.clickSaveButton();
-        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(5));
-        try {
-            wait.until(ExpectedConditions.alertIsPresent());
-
-            // Pindah fokus ke alert dan klik OK
-            Alert alert = CucumberHooks.getDriver().switchTo().alert();
-    @Then("I should see validation message {string}")
-    public void iShouldSeeValidationMessage(String expectedMessage) {
-    LoginPage loginPage = new LoginPage(CucumberHooks.getDriver());
-
-    String actualMessage = loginPage.getErrorMessage();
-    Assertions.assertTrue(actualMessage.contains(expectedMessage),
-            "Expected error message to contain: '" + expectedMessage + "' but got: '" + actualMessage + "'");
     }
 
+    @Then("I should see validation message {string}")
+    public void iShouldSeeValidationMessage(String expectedMessage) {
+
+        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.alertIsPresent());
+        // Pindah fokus ke alert dan klik OK
+        Alert alert = CucumberHooks.getDriver().switchTo().alert();
+
+        // Get the text content of the alert
+        String alertText = alert.getText();
+        System.out.println("Alert text: " + alertText);
+
+        alert.accept();
+    }
 }

@@ -21,6 +21,7 @@ Feature: End-to-End User Flow for Transaction Management
     And I enter price "500000"
     And I enter stock "100"
     And I click the Save create button
+    And I should see validation message "Consignment created successfully!"
     Then I should be redirected to the transactions page
 #    null value
 
