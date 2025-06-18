@@ -7,8 +7,10 @@ import org.openqa.selenium.Alert;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.junit.jupiter.api.Assertions;
 import pages.CreateTransactionPage;
 import org.openqa.selenium.WebDriver;
+import pages.LoginPage;
 import steps.CucumberHooks;
 
 import java.time.Duration;
@@ -54,11 +56,13 @@ public class CreateTransactionSteps {
 
             // Pindah fokus ke alert dan klik OK
             Alert alert = CucumberHooks.getDriver().switchTo().alert();
+    @Then("I should see validation message {string}")
+    public void iShouldSeeValidationMessage(String expectedMessage) {
+    LoginPage loginPage = new LoginPage(CucumberHooks.getDriver());
 
-            alert.accept(); // atau alert.dismiss() jika perlu cancel
-        } catch (TimeoutException e) {
-            Assertions.fail("Expected alert after saving, but none appeared.");
-        }
+    String actualMessage = loginPage.getErrorMessage();
+    Assertions.assertTrue(actualMessage.contains(expectedMessage),
+            "Expected error message to contain: '" + expectedMessage + "' but got: '" + actualMessage + "'");
     }
 
 }

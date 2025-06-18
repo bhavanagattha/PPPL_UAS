@@ -20,9 +20,4 @@ public class EditTransactionSteps {
     public void iEnterSold(String sold) {
         editTransactionPage.enterSold(sold);
     }
-
-    @And("I click the Save edit button")
-    public void iClickSaveEditButton() {
-        editTransactionPage.clickSaveButton();
-    }
 }

@@ -1,6 +1,8 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.LoginPage;
@@ -39,5 +41,25 @@ public class LoginSteps {
     public void i_click_the_login_button() {
         logger.info("Clicking login button");
         loginPage.clickLoginButton();
+    }
+
+    @Given("I am logged in as owner")
+    public void i_am_logged_in_as_owner() {
+        String ownerEmail = "alganis@admin.com";
+        String ownerPassword = "admin12345";
+
+        i_am_on_the_login_page();
+        i_enter_email(ownerEmail);
+        i_enter_password(ownerPassword);
+        i_click_the_login_button();
+    }
+
+    @Then("I should see error message {string}")
+    public void i_should_see_error_message(String expectedMessage) {
+        LoginPage loginPage = new LoginPage(CucumberHooks.getDriver());
+
+        String actualMessage = loginPage.getErrorMessage();
+        Assertions.assertTrue(actualMessage.contains(expectedMessage),
+                "Expected error message to contain: '" + expectedMessage + "' but got: '" + actualMessage + "'");
     }
 }
