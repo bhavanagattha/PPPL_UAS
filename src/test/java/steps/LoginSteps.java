@@ -3,9 +3,13 @@ package steps;
 import io.cucumber.java.en.*;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import pages.LoginPage;
+
+import java.time.Duration;
 
 /**
  * Step definitions for login-related actions.
@@ -62,4 +66,22 @@ public class LoginSteps {
         Assertions.assertTrue(actualMessage.contains(expectedMessage),
                 "Expected error message to contain: '" + expectedMessage + "' but got: '" + actualMessage + "'");
     }
+
+    @Then("I should be redirected to the login page")
+    public void i_should_be_redirected_to_the_login_page() {
+        WebDriver driver = CucumberHooks.getDriver();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        String expectedUrl = "https://frontend-alganis-production.up.railway.app/";
+
+        // Tunggu sampai URL berubah sesuai target
+        wait.until(ExpectedConditions.urlToBe(expectedUrl));
+
+        String currentUrl = driver.getCurrentUrl();
+        logger.info("Verifying login page redirect. Current URL: {}", currentUrl);
+
+        Assertions.assertEquals(expectedUrl, currentUrl,
+                "Not redirected to login page. Actual URL: " + currentUrl);
+    }
+
 }

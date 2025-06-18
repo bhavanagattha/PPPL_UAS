@@ -27,7 +27,7 @@ Feature: End-to-End User Flow for Transaction Management
 
 #    edit transaction
     When I click the Edit button for the first transaction
-    And I enter entry date "2025-01-02"
+    And I enter entry date "02-01-2025"
     And I enter sold "100"
     And I click the Save edit button
     Then I should be redirected to the transactions page

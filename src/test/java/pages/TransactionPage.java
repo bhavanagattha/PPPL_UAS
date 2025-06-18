@@ -60,28 +60,9 @@ public class TransactionPage {
         wait.until(ExpectedConditions.elementToBeClickable(addButton)).click();
     }
 
-    public void enterDate(String date) {
-        wait.until(ExpectedConditions.visibilityOf(dateField)).clear();
-        dateField.sendKeys(date);
-    }
-
-    public void enterAmount(String amount) {
-        amountField.clear();
-        amountField.sendKeys(amount);
-    }
-
-    public void enterDescription(String description) {
-        descriptionField.clear();
-        descriptionField.sendKeys(description);
-    }
-
-    public void clickSaveButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
-    }
-
-    public void clickEditButton(int index) {
-        wait.until(ExpectedConditions.visibilityOfAllElements(editButtons));
-        editButtons.get(index).click();
+    public void clickEditButton() {
+        wait.until(ExpectedConditions.visibilityOfAllElements(editButton));
+        editButton.click();
     }
 
     public void clickDeleteButton(int index) {

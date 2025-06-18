@@ -39,7 +39,7 @@ public class DashboardPage {
     @FindBy(xpath = "//button[contains(text(), 'Logout')]")
     private WebElement logoutButton;
 
-    @FindBy(xpath = "//button[contains(text(), 'Logout')]")
+    @FindBy(xpath = "/html/body/nav/div[3]/div/div/div/button[2]")
     private WebElement confirmLogoutButton;
 
     @FindBy(xpath = "//button[contains(text(), 'Batal')]")
