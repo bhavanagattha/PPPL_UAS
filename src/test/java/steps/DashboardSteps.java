@@ -55,4 +55,16 @@ public class DashboardSteps {
         Assertions.assertTrue(transactionPage.isTransactionTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/transaksi", CucumberHooks.getDriver().getCurrentUrl());
     }
+
+    @Then("I should be redirected to the expense list page")
+    public void i_should_be_redirected_to_the_expense_list_page() {
+        Assertions.assertTrue(expenseListPage.isExpenseTableDisplayed());
+        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/barang", CucumberHooks.getDriver().getCurrentUrl());
+    }
+
+    @Then("I should be redirected to the employee management page")
+    public void i_should_be_redirected_to_the_employee_management_page() {
+        Assertions.assertTrue(employeeManagementPage.isUserTableDisplayed());
+        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/pegawai", CucumberHooks.getDriver().getCurrentUrl());
+    }
 }
