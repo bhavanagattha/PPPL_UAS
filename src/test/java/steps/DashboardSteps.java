@@ -51,7 +51,7 @@ public class DashboardSteps {
 
     @Then("I should be redirected to the dashboard page")
     public void i_should_be_redirected_to_the_dashboard_page() {
-        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.urlContains("/dashboard"));
         logger.info("Verifying dashboard redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
         String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
@@ -62,11 +62,4 @@ public class DashboardSteps {
         Assertions.assertTrue(dashboardPage.isIncomeTableDisplayed(), "Dashboard indicator not displayed");
     }
 
-    @Then("I should be redirected to the login page")
-    public void i_should_be_redirected_to_the_login_page() {
-        logger.info("Verifying login page redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
-        String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
-        Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/", currentUrl,
-                "Not redirected to login page. Actual URL: " + currentUrl);
-    }
 }

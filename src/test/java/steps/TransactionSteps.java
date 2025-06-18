@@ -31,7 +31,7 @@ public class TransactionSteps {
     @When("I click the Edit button for the first transaction")
     public void i_click_the_edit_button_for_the_first_transaction() {
         logger.info("Clicking Edit button for first transaction");
-        transactionPage.clickEditButton(1);
+        transactionPage.clickEditButton();
     }
 
     @Then("I should be redirected to the transactions page")

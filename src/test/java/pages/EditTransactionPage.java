@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class EditTransactionPage {
     WebDriver driver;
@@ -15,8 +16,10 @@ public class EditTransactionPage {
     By saveButton = By.xpath("//button[@type='submit' and contains(text(),'Simpan')]");
 
     public void enterEntryDate(String entryDate) {
-        driver.findElement(entryDateField).clear();
-        driver.findElement(entryDateField).sendKeys(entryDate);
+        WebElement entryDataInput = driver.findElement(entryDateField);
+        entryDataInput.click();
+        entryDataInput.clear();
+        entryDataInput.sendKeys(entryDate);
     }
 
     public void enterSold(String sold) {
