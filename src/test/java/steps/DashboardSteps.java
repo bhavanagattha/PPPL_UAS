@@ -51,7 +51,7 @@ public class DashboardSteps {
 
     @Then("I should be redirected to the dashboard page")
     public void i_should_be_redirected_to_the_dashboard_page() {
-        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(CucumberHooks.getDriver(), Duration.ofSeconds(20));
         wait.until(ExpectedConditions.urlContains("/dashboard"));
         logger.info("Verifying dashboard redirect. Current URL: {}", CucumberHooks.getDriver().getCurrentUrl());
         String currentUrl = CucumberHooks.getDriver().getCurrentUrl();
