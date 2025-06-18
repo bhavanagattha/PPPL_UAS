@@ -26,23 +26,23 @@ public class TransactionSteps {
         Assertions.assertTrue(transactionPage.isAddTransactionPageDisplayed());
     }
 
-    @When("I enter date {string}")
-    public void i_enter_date(String date) {
+    @When("I enter date on transaction {string}")
+    public void i_enter_date_on_transaction(String date) {
         transactionPage.enterDate(date);
     }
 
-    @When("I enter amount {string}")
-    public void i_enter_amount(String amount) {
+    @When("I enter amount on transaction {string}")
+    public void i_enter_amount_on_transaction(String amount) {
         transactionPage.enterAmount(amount);
     }
 
-    @When("I enter description {string}")
-    public void i_enter_description(String description) {
+    @When("I enter description on transaction {string}")
+    public void i_enter_description_on_transaction(String description) {
         transactionPage.enterDescription(description);
     }
 
-    @When("I click the Save button")
-    public void i_click_the_save_button() {
+    @When("I click the Save button on transaction")
+    public void i_click_the_save_button_on_transaction() {
         transactionPage.clickSaveButton();
     }
 
@@ -62,8 +62,8 @@ public class TransactionSteps {
         transactionPage.clickConfirmDeleteButton();
     }
 
-    @Then("I should be redirected to the transactions page")
-    public void i_should_be_redirected_to_the_transactions_page() {
+    @Then("I should be redirected to the transactions page from the transactions page")
+    public void i_should_be_redirected_to_the_transactions_page_from_the_transactions_page() {
         Assertions.assertTrue(transactionPage.isTransactionTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/transaksi", CucumberHooks.getDriver().getCurrentUrl());
     }

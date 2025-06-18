@@ -31,13 +31,13 @@ public class EmployeeManagementSteps {
         employeeManagementPage.enterName(name);
     }
 
-    @When("I enter email {string}")
-    public void i_enter_email(String email) {
+    @When("I enter email on employee {string}")
+    public void i_enter_email_on_employee(String email) {
         employeeManagementPage.enterEmail(email);
     }
 
-    @When("I enter password {string}")
-    public void i_enter_password(String password) {
+    @When("I enter password on employee {string}")
+    public void i_enter_password_on_employee(String password) {
         employeeManagementPage.enterPassword(password);
     }
 
@@ -46,8 +46,8 @@ public class EmployeeManagementSteps {
         employeeManagementPage.enterPasswordConfirmation(password);
     }
 
-    @When("I click the Save button")
-    public void i_click_the_save_button() {
+    @When("I click the Save button on employee")
+    public void i_click_the_save_button_on_employee() {
         employeeManagementPage.clickSaveButton();
     }
 
@@ -62,8 +62,8 @@ public class EmployeeManagementSteps {
         employeeManagementPage.clickDeleteButton(0);
     }
 
-    @When("I click the Confirm Delete button")
-    public void i_click_the_confirm_delete_button() {
+    @When("I click the Confirm Delete button on employee")
+    public void i_click_the_confirm_delete_button_on_employee() {
         employeeManagementPage.clickConfirmDeleteButton();
     }
 
@@ -72,8 +72,8 @@ public class EmployeeManagementSteps {
         employeeManagementPage.enterSearchQuery(query);
     }
 
-    @Then("I should be redirected to the employee management page")
-    public void i_should_be_redirected_to_the_employee_management_page() {
+    @Then("I should be redirected to the employee management page from the employee management page")
+    public void i_should_be_redirected_to_the_employee_management_page_from_the_employee_management_page() {
         Assertions.assertTrue(employeeManagementPage.isUserTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/pegawai", CucumberHooks.getDriver().getCurrentUrl());
     }

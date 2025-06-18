@@ -36,18 +36,18 @@ public class ExpenseListSteps {
         Assertions.assertTrue(expenseListPage.isDownloadPageDisplayed());
     }
 
-    @When("I enter date {string}")
-    public void i_enter_date(String date) {
+    @When("I enter date on expense {string}")
+    public void i_enter_date_on_expense(String date) {
         expenseListPage.enterDate(date);
     }
 
-    @When("I enter amount {string}")
-    public void i_enter_amount(String amount) {
+    @When("I enter amount on expense {string}")
+    public void i_enter_amount_on_expense(String amount) {
         expenseListPage.enterAmount(amount);
     }
 
-    @When("I enter description {string}")
-    public void i_enter_description(String description) {
+    @When("I enter description on expense {string}")
+    public void i_enter_description_on_expense(String description) {
         expenseListPage.enterDescription(description);
     }
 
@@ -61,8 +61,8 @@ public class ExpenseListSteps {
         expenseListPage.enterEndDate(endDate);
     }
 
-    @When("I click the Save button")
-    public void i_click_the_save_button() {
+    @When("I click the Save button on expense")
+    public void i_click_the_save_button_on_expense() {
         expenseListPage.clickSaveButton();
     }
 
@@ -82,13 +82,13 @@ public class ExpenseListSteps {
         expenseListPage.clickDeleteButton(0);
     }
 
-    @When("I click the Confirm Delete button")
-    public void i_click_the_confirm_delete_button() {
+    @When("I click the Confirm Delete button on expense")
+    public void i_click_the_confirm_delete_button_on_expense() {
         expenseListPage.clickConfirmDeleteButton();
     }
 
-    @Then("I should be redirected to the expense list page")
-    public void i_should_be_redirected_to_the_expense_list_page() {
+    @Then("I should be redirected to the expense list page from the expense list page")
+    public void i_should_be_redirected_to_the_expense_list_page_from_the_expense_list_page() {
         Assertions.assertTrue(expenseListPage.isExpenseTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/barang", CucumberHooks.getDriver().getCurrentUrl());
     }

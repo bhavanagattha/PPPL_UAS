@@ -22,13 +22,13 @@ public class LoginSteps {
         loginPage.open();
     }
 
-    @When("I enter email {string}")
-    public void i_enter_email(String email) {
+    @When("I enter email on login {string}")
+    public void i_enter_email_on_login(String email) {
         loginPage.enterEmail(email);
     }
 
-    @When("I enter password {string}")
-    public void i_enter_password(String password) {
+    @When("I enter password on login {string}")
+    public void i_enter_password_on_login(String password) {
         loginPage.enterPassword(password);
     }
 

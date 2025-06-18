@@ -35,36 +35,37 @@ public class DashboardSteps {
         Assertions.assertTrue(dashboardPage.isEmployeeManagementButtonDisplayed(), "User is not an owner");
     }
 
-    @When("I click the Transactions button")
-    public void i_click_the_transactions_button() {
+    @When("I click the Transactions button on dahsboard")
+    public void i_click_the_transactions_button_on_dashboard() {
         dashboardPage.clickTransactionButton();
     }
 
-    @When("I click the Expense List button")
-    public void i_click_the_expense_list_button() {
+    @When("I click the Expense List button on dashboard")
+    public void i_click_the_expense_list_button_on_dashboard() {
         dashboardPage.clickExpenseListButton();
     }
 
-    @When("I click the Employee Management button")
-    public void i_click_the_employee_management_button() {
+    @When("I click the Employee Management button on dashboard")
+    public void i_click_the_employee_management_button_on_dashboard() {
         dashboardPage.clickEmployeeManagementButton();
     }
 
-    @Then("I should be redirected to the transactions page")
-    public void i_should_be_redirected_to_the_transactions_page() {
+    @Then("I should be redirected to the transactions page from dashboard")
+    public void i_should_be_redirected_to_the_transactions_page_from_dashboard() {
         Assertions.assertTrue(transactionPage.isTransactionTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/transaksi", CucumberHooks.getDriver().getCurrentUrl());
     }
 
-    @Then("I should be redirected to the expense list page")
-    public void i_should_be_redirected_to_the_expense_list_page() {
+    @Then("I should be redirected to the expense list page from dashboard")
+    public void i_should_be_redirected_to_the_expense_list_page_from_dashboard() {
         Assertions.assertTrue(expenseListPage.isExpenseTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/barang", CucumberHooks.getDriver().getCurrentUrl());
     }
 
-    @Then("I should be redirected to the employee management page")
-    public void i_should_be_redirected_to_the_employee_management_page() {
+    @Then("I should be redirected to the employee management page from dashboard")
+    public void i_should_be_redirected_to_the_employee_management_page_from_dashboard() {
         Assertions.assertTrue(employeeManagementPage.isUserTableDisplayed());
         Assertions.assertEquals("https://padwebkeuangan-production.up.railway.app/pegawai", CucumberHooks.getDriver().getCurrentUrl());
     }
+
 }

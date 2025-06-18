@@ -4,7 +4,7 @@ Feature: Login
 
   Scenario: TC-001 Successful login with valid credentials
     Given I am on the login page
-    When I enter email "owner@example.com"
-    And I enter password "password123"
+    When I enter email on login "owner@example.com"
+    And I enter password on login "password123"
     And I click the login button
     Then I should be redirected to the dashboard page
